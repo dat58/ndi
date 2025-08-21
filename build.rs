@@ -30,7 +30,7 @@ fn main() {
         } else if cfg!(target_os = "linux") {
             // For Linux, try the Advanced SDK directory first.
             let advanced = "/usr/share/NDI Advanced SDK for Linux";
-            let standard = "/usr/share/NDI SDK for Linux";
+            let standard = "/usr";
             if Path::new(advanced).exists() {
                 advanced.to_string()
             } else {
@@ -154,6 +154,7 @@ fn main() {
     // Generate the bindings using bindgen.
     let bindings = bindgen::Builder::default()
         .header(main_header)
+        .clang_arg(format!("--target={}", env::var("TARGET").unwrap()))
         .clang_arg(format!("-I{}", ndi_include_path))
         .derive_default(true)
         .generate()
