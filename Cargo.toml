@@ -22,7 +22,7 @@ png = "0.17.16"
 thiserror = "2.0.12"
 
 [build-dependencies]
-bindgen = "0.71.1"
+bindgen = { version = "0.71.1", default-features = false }
 lodepng = "3.11.0"
 
 [features]
